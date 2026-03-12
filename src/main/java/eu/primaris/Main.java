@@ -4,29 +4,39 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        if (args.length < 2) {
+        if (args.length < 4) {
+
             System.out.println("""
                     Usage:
-                    mvn exec:java -Dexec.args="AGE GENDER [COUNT]"
+                    java -jar oracle-person-generator.jar AGE GENDER [COUNT] DB_URL DB_USER DB_PASSWORD
                     
-                    Examples:
-                    mvn exec:java -Dexec.args="30 M"
-                    mvn exec:java -Dexec.args="25 F 10"
+                    Example:
+                    java -jar oracle-person-generator.jar 30 M 10 jdbc:oracle:thin:@localhost:1521/XEPDB1 dev dev
                     """);
+
             return;
         }
 
         int age = Integer.parseInt(args[0]);
         String gender = args[1];
 
-        int count = 1;
+        int count;
+        int index;
 
-        if (args.length >= 3) {
+        if (args.length == 5) {
+            count = 1;
+            index = 2;
+        } else {
             count = Integer.parseInt(args[2]);
+            index = 3;
         }
 
+        String dbUrl = args[index];
+        String dbUser = args[index + 1];
+        String dbPassword = args[index + 2];
+
         PersonGenerator generator = new PersonGenerator();
-        DatabaseService db = new DatabaseService();
+        DatabaseService db = new DatabaseService(dbUrl, dbUser, dbPassword);
 
         for (int i = 0; i < count; i++) {
 

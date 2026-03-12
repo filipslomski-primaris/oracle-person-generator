@@ -5,17 +5,9 @@ import java.util.Random;
 
 public class PersonGenerator {
 
-    private static final String[] MALE_NAMES = {
-            "Jan", "Piotr", "Adam", "Tomasz"
-    };
-
-    private static final String[] FEMALE_NAMES = {
-            "Anna", "Maria", "Katarzyna", "Agnieszka"
-    };
-
-    private static final String[] LAST_NAMES = {
-            "Kowalski", "Nowak", "Wiśniewski", "Wójcik"
-    };
+    private static final String[] MALE_NAMES = {"Jan", "Piotr", "Adam", "Tomasz"};
+    private static final String[] FEMALE_NAMES = {"Anna", "Maria", "Katarzyna", "Agnieszka"};
+    private static final String[] LAST_NAMES = {"Kowalski", "Nowak", "Wiśniewski", "Wójcik"};
 
     public PersonData generate(int age, String gender) {
 

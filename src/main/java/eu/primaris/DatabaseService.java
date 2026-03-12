@@ -7,15 +7,19 @@ import java.sql.ResultSet;
 
 public class DatabaseService {
 
-    private static final String URL =
-            "jdbc:oracle:thin:@vps-f8c88572.vps.ovh.net:1521/XEPDB1";
+    private final String url;
+    private final String user;
+    private final String pass;
 
-    private static final String USER = "dev";
-    private static final String PASS = "dev";
+    public DatabaseService(String url, String user, String pass) {
+        this.url = url;
+        this.user = user;
+        this.pass = pass;
+    }
 
     public void savePerson(PersonData p) throws Exception {
 
-        Connection conn = DriverManager.getConnection(URL, USER, PASS);
+        Connection conn = DriverManager.getConnection(url, user, pass);
 
         Long partyId = insertParty(conn);
 
